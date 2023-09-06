@@ -1,0 +1,1300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="attrs_match_parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+
+    </style>
+
+    <style name="CustomTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+
+
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/alpha_color_2</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/dark_gray</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42350793</item>
+    </style>
+
+
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="SpenseBottomSheetDialog"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/SpenseModalStyle</item>
+    </style>
+
+    <style name="SpenseModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_corners_shape</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="SpenseDialogStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+<!--        <item name="android:windowBackground">@color/overlay_dark_30</item>-->
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.CustomDialog.Rounded</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="MyRounded.MaterialComponents.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:windowBackground">@color/overlay_dark_30</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.CustomDialog.Rounded
+        </item>
+        <item name="colorSurface">@color/white</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CustomDialog.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">18dp</item>
+    </style>
+
+
+
+
+    <style name="text_20sp_black_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_light_black_10sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_light_15sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_light_black_10sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_light_black_10sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_orange_10sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/right_chat_color</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_orange_10sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/right_chat_color</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_orange_10sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/right_chat_color</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+
+    <style name="text_14sp_theme_sw360dp">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_14sp_theme_bold_sw360dp">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_14sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_16sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_16sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_16sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_white_14sp_theme_sw360dp">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_white_12sp_theme_sw360dp">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_12sp_theme_sw360dp">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <style name="text_white_12sp_semi_bold_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_white_12sp_bold_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+
+    <style name="text_white_10sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_white_10sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_14sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_14sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_light_16sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_white_16sp_theme_bold_sw360dp">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_16sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_light_14sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_light_14sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_light_14sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_12sp_black_medium_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="text_16sp_black_medium_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+
+
+    <style name="text_18sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_18sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_18sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_grey_18sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_grey_18sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_grey_18sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_grey_14sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_grey_14sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_grey_14sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+
+    <style name="text_white_18sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_white_32sp_theme_bold_sw360dp">
+        <item name="android:textSize">32dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_28sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_28sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+
+    <style name="text_white_30sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/_30ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_28sp_theme_bold_sw360dp">
+        <item name="android:textSize">28dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_28sp_theme_bold_sw360dp">
+        <item name="android:textSize">28dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_18sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_18sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/_18ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_22sp_theme_bold_sw360dp">
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_22sp_theme_bold_sw360dp">
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_22sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_white_20sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_20sp_theme_sw360dp">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_white_20sp_theme_bold_sw360dp">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_24sp_theme_bold_sw360dp">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_24sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_light_40sp_theme_sw360dp">
+        <item name="android:textSize">40dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <style name="text_light_18sp_theme_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_light_18sp_theme_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_light_18sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_30sp_theme_sw360dp">
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_30sp_theme_bold_sw360dp">
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_28sp_black_semibold_sw360dp">
+        <item name="android:textSize">28dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_30sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_70sp_theme_sw360dp">
+        <item name="android:textSize">70dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_70sp_theme_bold_sw360dp">
+        <item name="android:textSize">70dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_70sp_theme_semi_bold_sw360dp">
+        <item name="android:textSize">70dp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="popupMenuStyle" parent="@android:style/Widget.PopupMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:itemPadding">25dp</item>
+        <item name="android:listPreferredItemHeightSmall">70dp</item>
+
+
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/overlay_dark_80</item>
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/white</item>
+        <item name ="colorControlActivated">@color/black</item>
+        <!--Below line not present in partner app-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="drawerArrowStyle">@style/StreeDrawerArrowToggleStyle</item>
+    </style>
+
+    <style name="LoginTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="drawerArrowStyle">@style/StreeDrawerArrowToggleStyle</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.CustomThemeForPopup">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="StreeDrawerArrowToggleStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <style name="text_24sp_black_sw360dp">
+        <item name="android:textSize">@dimen/sw375dp_24dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_20sp_black_semibold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_20dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+
+    <style name="text_20sp_theme_bold_sw360dp">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">#F2000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_20sp_black_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_20dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_22sp_black_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_22dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+
+    <style name="text_22sp_black_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_22dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_22sp_black_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_22dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <style name="text_24sp_black_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw375dp_24dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_20sp_light_grey_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_20dp</item>
+        <item name="android:textColor">@color/platform_inactive_color</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_24sp_black_semi_bold_sw360dp">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_18sp_black_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_18sp_black_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+    <style name="text_18sp_black_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_18sp_grey_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_18sp_grey_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_18sp_white_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_18sp_white_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_18sp_platform_color_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/platform_color</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_18sp_platform_color_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_18dp</item>
+        <item name="android:textColor">@color/platform_color</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_16sp_black_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_16sp_black_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+    <style name="text_16sp_black_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_16sp_grey_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_16sp_grey_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_16sp_white_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_16sp_white_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_16sp_platform_color_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">@color/platform_color</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_16sp_platform_color_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_16dp</item>
+        <item name="android:textColor">@color/platform_color</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_14sp_black_sw360dp">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_14sp_black_semi_bold_sw360dp">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+    <style name="text_14sp_black_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_14sp_grey_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_14sp_grey_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_14sp_white_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_14sp_white_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_12sp_black_sw360dp">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_12sp_black_semi_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+    <style name="text_12sp_black_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_12sp_grey_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_12sp_grey_italic_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_italic</item>
+    </style>
+    <style name="text_12sp_grey_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_12sp_white_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_12sp_white_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_10sp_black_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_11sp_black_sw360dp">
+        <item name="android:textSize">11dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_10sp_black_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_10sp_grey_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_10sp_grey_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">#828282</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_10sp_white_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_10sp_white_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_10sp_red_bold_sw360dp">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">#EF5350</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="stree_tab_layout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@android:color/white</item>
+        <item name="tabIndicatorHeight">@dimen/sw360dp_2dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/stree_tab_text_12sp_white_bold_sw360dp</item>
+        <item name="tabSelectedTextColor">@android:color/white</item>
+    </style>
+
+    <style name="stree_tab_text_14sp_white_sw360dp" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="stree_tab_text_14sp_white_bold_sw360dp" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/sw360dp_14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="stree_tab_text_12sp_white_sw360dp" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="stree_tab_text_12sp_white_bold_sw360dp" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/sw360dp_12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Theme.Custom" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>
+    </style>
+
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">
+        <item name="android:focusedMonthDateColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <!--<style name="SpenseDatePicker" parent="Theme.MaterialComponents.Light.Dialog">
+
+        <item name="android:headerBackground">#A6773F</item>
+        <item name="colorControlNormal">#0C1281</item>
+        <item name="colorControlActivated">#00FF00</item>
+        <item name="android:textColorPrimary">#FF0000</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="backgroundColor">#DC7C7C</item>
+    </style>-->
+
+    <style name="stree_confirmation_dialog" parent="Theme.AppCompat.Light.Dialog">
+        <!-- For buttons in dialog -->
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <!-- For title and text in dialog -->
+        <item name="android:textColorPrimary">@color/grey_500</item>
+        <item name="android:textAppearance">@style/text_16sp_grey_sw360dp</item>
+        <!-- For background -->
+        <!-- <item name="android:background">#4CAF50</item> -->
+        <item name="android:layout_width">@dimen/sw360dp_300dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MyAlertDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="small_label_style_stree">
+        <item name="android:textSize">@dimen/sw360dp_10dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="PauseDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/PauseDialogAnimation</item>
+    </style>
+
+    <style name="PauseDialogAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+    </style>
+
+    <style name="boldText">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:ems">10</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up_dialog</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_down</item>
+    </style>
+    <style name="DialogSlideAnimation" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="TrackSelectionDialogThemeOverlay" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="windowNoTitle">false</item>
+    </style>
+
+
+
+    <style name="text_14sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_14sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_18sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_18sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_white_18sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_22sp_black_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_22sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_12sp_black_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_16sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+    <style name="text_12sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="text_20sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+    <style name="text_white_14sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_white_14sp_app_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/alpha_color_2</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_16sp_app_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/alpha_color_2</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_18sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_14sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+
+    <style name="text_white_10sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_10sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_14sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_30sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_30sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_18sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_14sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_16sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_22sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_22sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_white_12sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <style name="text_16sp_black_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_18sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_14sp_black_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_white_24sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_white_16sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_14sp_black_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_11sp_black_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_11sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_10sp_black_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_10sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_10sp_semi_black_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_10sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_10sp_medium_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_10sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="text_9sp_black_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_9sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <!--<style name="text_slider_label" parent="Widget.MaterialComponents.Tooltip">
+        <item name="text_color">@color/white</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="backgroundTint">@color/alpha_color_2</item>
+        <item name="marginHorizontal">@dimen/sw420dp_8dp_v2</item>
+        <item name="textSize">@dimen/sw420sp_12sp_v2</item>
+    </style>-->
+
+
+
+    <style name="text_light_14sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_light_14sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/light_black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <style name="text_24sp_black_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_24sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_grey_14sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_14sp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="text_20sp_black_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+
+    <style name="text_white_20sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_28sp_black_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_28sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_12sp_black_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_20sp_light_grey_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_20sp</item>
+        <item name="android:textColor">@color/platform_inactive_color</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+
+    <style name="text_16sp_black_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_30sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_30sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_32sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_32sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_16sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <style name="text_16sp_black_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_white_21sp_theme_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_21sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_light_15sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_15sp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_9B699D_18sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">#9B699D</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+
+    <style name="text_18sp_black_semi_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="text_18sp_black_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_18sp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_light_40sp_theme_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_40sp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="text_48sp_theme_bold_sw420dp">
+        <item name="android:textSize">@dimen/sw420sp_48sp</item>
+        <item name="android:textColor">@color/overlay_dark_80</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="spense_date_picker" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorAccent">@color/primary_theme_color</item>
+        <item name="colorOnPrimary">@color/primary_theme_color</item>
+    </style>
+
+
+</resources>

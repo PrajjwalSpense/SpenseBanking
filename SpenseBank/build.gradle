@@ -14,6 +14,14 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+        buildConfig = true
+    }
+
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,6 +46,8 @@ dependencies {
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
+    implementation 'io.jsonwebtoken:jjwt:0.7.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
 
 }
 

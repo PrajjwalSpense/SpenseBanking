@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/googleSignInBottomSheetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <ImageView
+        android:id="@+id/sheet_image"
+        android:layout_width="@dimen/sw420dp_28dp_v2"
+        android:layout_height="@dimen/sw420dp_28dp_v2"
+        android:layout_marginStart="@dimen/sw420dp_24dp"
+        android:layout_marginTop="@dimen/sw420dp_44dp_v2"
+        android:src="@drawable/permission" />
+
+    <TextView
+        android:id="@+id/help_header"
+        style="@style/text_24sp_black_semi_bold_sw420dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sw420dp_24dp"
+        android:layout_marginTop="@dimen/sw420dp_18dp_v2"
+        android:layout_marginEnd="@dimen/sw420dp_24dp"
+        android:textSize="@dimen/sw420sp_14sp_v2"
+        android:textColor="@color/primary_theme_color"
+        android:text="Permission Request" />
+
+    <TextView
+        android:id="@+id/help_sub_header"
+        style="@style/text_14sp_theme_sw420dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sw420dp_24dp"
+        android:layout_marginTop="@dimen/sw420dp_16dp"
+        android:layout_marginEnd="@dimen/sw420dp_24dp"
+        android:textSize="@dimen/sw420sp_12sp_v2"
+        android:text="To provide the full experience, we need permissions to access your location, camera, microphone, and audio files. We use these to offer personalized services, capture photos/videos, record audio, and manage music. Please grant the necessary permissions." />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sw420dp_1dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/sw420dp_30dp_v2"
+        android:background="#B1A3CD" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/continue_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sw420dp_50dp"
+        android:layout_marginStart="@dimen/sw420dp_24dp_v2"
+        android:layout_marginTop="@dimen/sw420dp_24dp_v2"
+        android:layout_marginEnd="@dimen/sw420dp_24dp_v2"
+        android:layout_marginBottom="@dimen/sw420dp_12dp_v2"
+        app:cardBackgroundColor="@color/primary_theme_color"
+        app:cardCornerRadius="@dimen/sw420dp_25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/continue_button_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Grant Permission"
+                android:textAppearance="@style/text_white_18sp_theme_semi_bold_sw420dp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
