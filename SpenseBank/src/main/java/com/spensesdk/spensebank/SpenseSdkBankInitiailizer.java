@@ -54,7 +54,7 @@ public class SpenseSdkBankInitiailizer {
                 .setHeader(headers)
                 .setExpiration(expirationTime)
                 .setIssuedAt(now)
-                .claim("email_id",email_id)
+                .claim("email",email_id)
                 .claim("phone", phone)
                 .claim("name", name)
                 .claim("photo", photo)
@@ -77,7 +77,7 @@ public class SpenseSdkBankInitiailizer {
                 .setHeader(headers)
                 .setExpiration(expirationTime)
                 .setIssuedAt(now)
-                .claim("email_id",email)
+                .claim("email",email)
                 .claim("phone", phone)
                 .claim("name", name)
                 .claim("photo", photo)
@@ -122,8 +122,10 @@ public class SpenseSdkBankInitiailizer {
     }
     public void openBankingActivity(){
         try {
+            String token = createToken();
+            System.out.println("openActivity token : "+ token);
                 Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
-                myIntent.putExtra("token", createToken());
+                myIntent.putExtra("token", token);
                 context.startActivity(myIntent);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();

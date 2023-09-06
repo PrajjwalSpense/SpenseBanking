@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         name = getIntent().getStringExtra("name");
         email = getIntent().getStringExtra("email");
         phone = getIntent().getStringExtra("phone");
-        SpenseSdkBankInitiailizer sdkBankInitiailizer = new SpenseSdkBankInitiailizer(this,email,"91"+phone, name, "");
+        SpenseSdkBankInitiailizer sdkBankInitiailizer = new SpenseSdkBankInitiailizer(this,email,"+91"+phone, name, "");
         token = sdkBankInitiailizer.createToken(email,"+91"+phone,name,"");
         sdkBankInitiailizer.getSession(token, response -> {
             Toast.makeText(this, "Session Created", Toast.LENGTH_SHORT).show();
