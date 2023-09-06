@@ -548,7 +548,9 @@ public class BankingWebFragment extends Fragment {
         if (requestCode == REQUEST_PERMISSIONS_CODE) {
             if (hasAllPermissions()) {
                 System.out.println("hasAllPermissions");
-                forceUpdateBottomSheet.cancel();
+                if(forceUpdateBottomSheet != null){
+                    forceUpdateBottomSheet.cancel();
+                }
             } else {
                 // One or more permissions denied
                 openAForceBottomOpener();
