@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+    <color name="dashboard_pending_main">#8c7f00</color>
+    <color name="dashboard_pending_secondary">#584F00</color>
+
+    <color name="dashboard_live_main">#0c7010</color>
+    <color name="dashboard_live_secondary">#09540c</color>
+
+
+
     <!--<color name="progress_primary">#fff</color>-->
     <color name="progress_primary">@color/white</color>
     <color name="progress_secondary">@color/transparent</color>
