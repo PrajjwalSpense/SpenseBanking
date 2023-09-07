@@ -567,6 +567,9 @@ public class BankingWebFragment extends Fragment {
         forceUpdateBottomSheet.setCancelable(false);
 
         CardView continueButton = forceUpdateBottomSheet.findViewById(R.id.continue_button);
+        TextView help_header = forceUpdateBottomSheet.findViewById(R.id.help_header);
+        continueButton.setBackgroundColor(context.getResources().getColor(getArguments().getInt("color_code")));
+        help_header.setTextColor(context.getResources().getColor(getArguments().getInt("color_code")));
 
         continueButton.setOnClickListener(view -> {
             if (!hasAllPermissions()) {

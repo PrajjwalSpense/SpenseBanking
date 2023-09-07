@@ -66,17 +66,32 @@ public class SpenseSdk {
         return jwt;
     }
 
+    public void open(String module, String email_id, String phone, String name, String photo, int statuBarColor){
+        try {
+            String token = createToken(module, email_id, phone, name, photo);
+            System.out.println("openActivity token : "+ token);
+            Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
+            myIntent.putExtra("token", token);
+            myIntent.putExtra("status_bar_color", statuBarColor);
+            context.startActivity(myIntent);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void open(String module, String email_id, String phone, String name, String photo){
         try {
             String token = createToken(module, email_id, phone, name, photo);
             System.out.println("openActivity token : "+ token);
             Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
             myIntent.putExtra("token", token);
+            myIntent.putExtra("status_bar_color", R.color.alpha_card_color);
             context.startActivity(myIntent);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+
 
     public void getSession(String email_id, String phone, String name, String photo, APICall.Callback callback) {
         String token = createToken("/banking/spense",email_id,phone,name,photo);

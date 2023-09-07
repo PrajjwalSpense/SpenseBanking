@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.image.setOnClickListener(view -> {
             if(isLive)
-                sdkBankInitiailizer.open("/banking/spense",email,"+91"+phone,name,"");
+                sdkBankInitiailizer.open("/banking/spense",email,"+91"+phone,name,"",R.color.dashboard_live_main);
             else
                 Toast.makeText(MainActivity.this, "Banking coming soon.", Toast.LENGTH_SHORT);
 

@@ -20,7 +20,7 @@ public class SpenseOpenerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
-        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.alpha_card_color));
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,  getIntent().getIntExtra("status_bar_color",  R.color.alpha_card_color)));
     }
 
     @Override
@@ -31,6 +31,7 @@ public class SpenseOpenerActivity extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("token", getIntent().getStringExtra("token"));
+        bundle.putInt("color_code", getIntent().getIntExtra("status_bar_color",  R.color.alpha_card_color));
 
         bankingWebFragment = new BankingWebFragment();
         bankingWebFragment.setArguments(bundle);

@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/save_button"
             style="@style/text_20sp_light_grey_bold_sw420dp"
-            android:textColor="@color/blue800"
+            android:textColor="@color/black"
             android:layout_width="@dimen/sw375dp_60dp"
             android:layout_height="@dimen/sw420dp_45dp"
             android:layout_alignParentEnd="true"
