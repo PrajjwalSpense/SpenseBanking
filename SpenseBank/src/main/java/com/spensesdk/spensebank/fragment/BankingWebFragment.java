@@ -534,7 +534,6 @@ public class BankingWebFragment extends Fragment {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.CAMERA,
                 Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
                 readMediaImages
         }, REQUEST_PERMISSIONS_CODE);
     }

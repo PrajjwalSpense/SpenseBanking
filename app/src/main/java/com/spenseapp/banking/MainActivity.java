@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.spenseapp.banking.databinding.ActivityMainBinding;
-import com.spensesdk.spensebank.SpenseSdkBankInitiailizer;
+import com.spensesdk.spensebank.SpenseSdk;
 
 import java.util.Objects;
 
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding.heading.setText("Hi "+name+",");
 
-        SpenseSdkBankInitiailizer sdkBankInitiailizer = new SpenseSdkBankInitiailizer(this,email,"+91"+phone, name, "");
-        token = sdkBankInitiailizer.createToken(email,"+91"+phone,name,"");
+        SpenseSdk sdkBankInitiailizer = new SpenseSdk(this,"Demo",getString(R.string.api_key),getString(R.string.secret_key));
+        token = sdkBankInitiailizer.createToken("/banking/spense",email,"+91"+phone,name,"");
         sdkBankInitiailizer.getSession(token, response -> {
             Toast.makeText(this, "Session Created", Toast.LENGTH_SHORT).show();
             isSessionCreated = true;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.image.setOnClickListener(view -> {
             if(isLive)
-                sdkBankInitiailizer.openBankingActivity();
+                sdkBankInitiailizer.open("/banking/spense",email,"+91"+phone,name,"");
             else
                 Toast.makeText(MainActivity.this, "Banking coming soon.", Toast.LENGTH_SHORT);
 

@@ -18,7 +18,7 @@ import java.util.Map;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-public class SpenseSdkBankInitiailizer {
+public class SpenseSdk {
 
     private static final String HTTP_URL_FOR_NODEJS_SERVER = "https://partner.uat.spense.money/api/";
     private static final String USER_TOKEN = HTTP_URL_FOR_NODEJS_SERVER + "user/sdk/token";
@@ -31,21 +31,20 @@ public class SpenseSdkBankInitiailizer {
 
     Context context;
 
-    String name, email, phone, photo;
+    String api_key, secret_key, hostName;
 
-    public SpenseSdkBankInitiailizer(Context context) {
+
+    public SpenseSdk(Context context, String hostName,String api_key, String secret_key) {
         this.context = context;
+        this.api_key = api_key;
+        this.secret_key = secret_key;
+        this.hostName = hostName;
     }
-    public SpenseSdkBankInitiailizer(Context context, String email_id, String phone, String name, String photo) {
-        this.context = context;
-        this.email = email_id;
-        this.name = name;
-        this.phone = phone;
-        this.photo = photo;
-    }
-    public String createToken(String email_id, String phone, String name, String photo){
+
+
+    public String createToken(String module,String email_id, String phone, String name, String photo){
         Map<String, Object> headers = new HashMap<String, Object>();
-        headers.put("kid", context.getResources().getString(R.string.api_key));
+        headers.put("kid", api_key);
         headers.put("typ", "JWT");
         headers.put("alg", "HS256");
 
@@ -58,39 +57,29 @@ public class SpenseSdkBankInitiailizer {
                 .claim("phone", phone)
                 .claim("name", name)
                 .claim("photo", photo)
-                .claim("module", "/banking/spense")
+                .claim("module", module)//"/banking/spense")
                 .signWith(
                         SignatureAlgorithm.HS256,
-                        context.getResources().getString(R.string.secret_key).getBytes()
+                        secret_key.getBytes()
                 )
                 .compact();
         return jwt;
     }
-    public String createToken(){
-        Map<String, Object> headers = new HashMap<String, Object>();
-        headers.put("kid", context.getResources().getString(R.string.api_key));
-        headers.put("typ", "JWT");
-        headers.put("alg", "HS256");
 
-
-        String jwt = Jwts.builder()
-                .setHeader(headers)
-                .setExpiration(expirationTime)
-                .setIssuedAt(now)
-                .claim("email",email)
-                .claim("phone", phone)
-                .claim("name", name)
-                .claim("photo", photo)
-                .claim("module", "/banking/spense")
-                .signWith(
-                        SignatureAlgorithm.HS256,
-                        context.getResources().getString(R.string.secret_key).getBytes()
-                )
-                .compact();
-        return jwt;
+    public void open(String module, String email_id, String phone, String name, String photo){
+        try {
+            String token = createToken(module, email_id, phone, name, photo);
+            System.out.println("openActivity token : "+ token);
+            Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
+            myIntent.putExtra("token", token);
+            context.startActivity(myIntent);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
+
     public void getSession(String email_id, String phone, String name, String photo, APICall.Callback callback) {
-        String token = createToken(email_id,phone,name,photo);
+        String token = createToken("/banking/spense",email_id,phone,name,photo);
         APICall.callAPI(context, "GET", USER_TOKEN + "/" + token, new JSONObject(), response -> {
             System.out.println(USER_TOKEN + " - - - - - "+response);
             if (response != null) {
@@ -114,31 +103,23 @@ public class SpenseSdkBankInitiailizer {
             }
         });
     }
+
     public void getPassbookBalance(Context context, APICall.Callback callback){
         APICall.callAPI(context, "GET", PASSBOOK_BALANCE, new JSONObject(), callback::onResult);
     }
     public void getLiveStatus(Context context, APICall.Callback callback){
         APICall.callAPI(context, "GET", LIVE, new JSONObject(), callback::onResult);
     }
-    public void openBankingActivity(){
-        try {
-            String token = createToken();
-            System.out.println("openActivity token : "+ token);
-                Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
-                myIntent.putExtra("token", token);
-                context.startActivity(myIntent);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-    }
-    public Fragment getBankingFragment(){
+
+
+
+    public Fragment getBankingFragment(String module, String email_id, String phone, String name, String photo){
         Bundle bundle = new Bundle();
-        bundle.putString("token", createToken());
+        bundle.putString("token", createToken(module, email_id, phone, name, photo));
 
         BankingWebFragment bankingWebFragment = new BankingWebFragment();
         bankingWebFragment.setArguments(bundle);
 
         return bankingWebFragment;
     }
-
 }
