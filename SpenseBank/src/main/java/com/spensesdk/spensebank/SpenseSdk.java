@@ -86,6 +86,7 @@ public class SpenseSdk {
             Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
             myIntent.putExtra("token", token);
             myIntent.putExtra("status_bar_color", R.color.alpha_card_color);
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(myIntent);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
