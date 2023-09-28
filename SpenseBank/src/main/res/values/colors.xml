@@ -18,6 +18,8 @@
     <color name="manual_saving_contest_text_color">#1E3868</color>
     <color name="leader_highlight">#D8D1E6</color>
 
+    <color name="fortune_landing_color">#00A1FA</color>
+
     <color name="light_black">#8C000000</color>
     <color name="whitish">#F5F5F5</color>
     <color name="primary_theme_color">#350793</color>

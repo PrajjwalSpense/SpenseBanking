@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.spensesdk.spensebank.fragment.BankingWebFragment;
+import com.spensesdk.spensebank.fragment.SpenseWebViewFragment;
 
 import java.util.Objects;
 
@@ -14,7 +15,9 @@ import java.util.Objects;
 public class SpenseOpenerActivity extends AppCompatActivity {
 
     FrameLayout fragment_to_show;
-    BankingWebFragment bankingWebFragment;
+//    BankingWebFragment bankingWebFragment;
+
+    SpenseWebViewFragment spenseWebViewFragment;
 
     @Override
     protected void onResume() {
@@ -33,12 +36,15 @@ public class SpenseOpenerActivity extends AppCompatActivity {
         bundle.putString("token", getIntent().getStringExtra("token"));
         bundle.putInt("color_code", getIntent().getIntExtra("status_bar_color",  R.color.alpha_card_color));
 
-        bankingWebFragment = new BankingWebFragment();
-        bankingWebFragment.setArguments(bundle);
+//        bankingWebFragment = new BankingWebFragment();
+//        bankingWebFragment.setArguments(bundle);
+
+        spenseWebViewFragment = new SpenseWebViewFragment();
+        spenseWebViewFragment.setArguments(bundle);
 
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction()
-                    .add(android.R.id.content, bankingWebFragment).commit();
+                    .add(android.R.id.content, spenseWebViewFragment).commit();
         }
     }
 
@@ -46,7 +52,9 @@ public class SpenseOpenerActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        boolean call = ((BankingWebFragment) bankingWebFragment).onBackPressed(this);
+//        boolean call = ((BankingWebFragment) bankingWebFragment).onBackPressed(this);
+        boolean call = spenseWebViewFragment.onBackPressed(this);
+
         System.out.println("receiving : "+call);
         if(call){
             finish();
