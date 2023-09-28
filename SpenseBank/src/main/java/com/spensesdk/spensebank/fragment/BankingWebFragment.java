@@ -153,7 +153,7 @@ public class BankingWebFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    FragmentBankingWebBinding binding;
+//    FragmentBankingWebBinding binding;
     private View rootView;
     private Context context;
 
@@ -163,11 +163,11 @@ public class BankingWebFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for context fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_banking_web, container, false);
-        rootView = binding.getRoot();
+//        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_banking_web, container, false);
+        rootView = inflater.inflate(R.layout.fragment_banking_web, container, false);
         context = rootView.getContext();
 
-        webView = binding.webView;
+        webView = rootView.findViewById(R.id.webView);
 
         sharedPreferenceManager = new SharedPreferenceManager(context);
 
