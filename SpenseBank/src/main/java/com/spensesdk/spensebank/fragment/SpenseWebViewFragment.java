@@ -2,16 +2,19 @@ package com.spensesdk.spensebank.fragment;
 
 
 import static com.spensesdk.spensebank.helper.Constants.BLANK;
+import static com.spensesdk.spensebank.helper.Constants.NOTIFICATION_REDIRECT;
 import static com.spensesdk.spensebank.helper.Constants.SLUG;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -49,6 +52,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.spensesdk.spensebank.R;
 import com.spensesdk.spensebank.helper.network.Network;
@@ -88,6 +92,12 @@ public class SpenseWebViewFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private View rootView;
+    private final BroadcastReceiver messageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            slug = intent.getStringExtra(SLUG);
+        }
+    };
 
 
     public SpenseWebViewFragment() {
@@ -108,6 +118,7 @@ public class SpenseWebViewFragment extends Fragment {
         super.onResume();
 //        getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
 //        getWindow().setStatusBarColor(ContextCompat.getColor(context, R.color.alpha_card_color));
+        LocalBroadcastManager.getInstance(context).registerReceiver(messageReceiver, new IntentFilter(NOTIFICATION_REDIRECT));
     }
 
     @Override

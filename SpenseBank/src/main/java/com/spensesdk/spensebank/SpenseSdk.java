@@ -1,22 +1,25 @@
 package com.spensesdk.spensebank;
 
+import static com.spensesdk.spensebank.helper.Constants.NOTIFICATION_REDIRECT;
 import static com.spensesdk.spensebank.helper.Constants.SLUG;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.spensesdk.spensebank.fragment.BankingWebFragment;
 import com.spensesdk.spensebank.fragment.SpenseWebViewFragment;
 import com.spensesdk.spensebank.helper.APICall;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.jsonwebtoken.Jwts;
@@ -39,7 +42,7 @@ public class SpenseSdk {
     String api_key, secret_key, hostName;
 
 
-    public SpenseSdk(Context context, String hostName,String api_key, String secret_key) {
+    public SpenseSdk(Context context, String hostName, String api_key, String secret_key) {
         this.context = context;
         this.api_key = api_key;
         this.secret_key = secret_key;
@@ -47,32 +50,20 @@ public class SpenseSdk {
     }
 
 
-    protected String createToken(String email_id, String phone, String name, String photo){
+    protected String createToken(String email_id, String phone, String name, String photo) {
         Map<String, Object> headers = new HashMap<String, Object>();
         headers.put("kid", api_key);
         headers.put("typ", "JWT");
         headers.put("alg", "HS256");
 
 
-        String jwt = Jwts.builder()
-                .setHeader(headers)
-                .setExpiration(expirationTime)
-                .setIssuedAt(now)
-                .claim("email",email_id)
-                .claim("phone", phone)
-                .claim("name", name)
-                .claim("photo", photo)
-                .signWith(
-                        SignatureAlgorithm.HS256,
-                        secret_key.getBytes()
-                )
-                .compact();
+        String jwt = Jwts.builder().setHeader(headers).setExpiration(expirationTime).setIssuedAt(now).claim("email", email_id).claim("phone", phone).claim("name", name).claim("photo", photo).signWith(SignatureAlgorithm.HS256, secret_key.getBytes()).compact();
         return jwt;
     }
 
-    public void open(String slug, int statusBarColor){
+    public void open(String slug, int statusBarColor) {
         try {
-            Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
+            Intent myIntent = new Intent(context, Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
             myIntent.putExtra(SLUG, slug);
             myIntent.putExtra("status_bar_color", statusBarColor);
             context.startActivity(myIntent);
@@ -81,9 +72,9 @@ public class SpenseSdk {
         }
     }
 
-    public void open(String slug){
+    public void open(String slug) {
         try {
-            Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
+            Intent myIntent = new Intent(context, Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
             myIntent.putExtra(SLUG, slug);
             myIntent.putExtra("status_bar_color", R.color.alpha_card_color);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -93,11 +84,29 @@ public class SpenseSdk {
         }
     }
 
+    public void openFromNotification(String slug) {
+        Intent intent;
+        if (checkIfActivityOpen("SpenseOpenerActivity")) {
+            intent = new Intent(NOTIFICATION_REDIRECT);
+            intent.putExtra(SLUG, slug);
+            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+        } else {
+            try {
+                intent = new Intent(context, Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
+                intent.putExtra(SLUG, slug);
+                intent.putExtra("status_bar_color", R.color.alpha_card_color);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public void login(String email_id, String phone, String name, String photo, APICall.Callback callback) {
-        String token = createToken(email_id,phone,name,photo);
+        String token = createToken(email_id, phone, name, photo);
         APICall.callAPI(context, "GET", USER_TOKEN + "/" + token, new JSONObject(), response -> {
-            System.out.println(USER_TOKEN + " - - - - - "+response);
+            System.out.println(USER_TOKEN + " - - - - - " + response);
             if (response != null) {
                 try {
                     callback.onResult(response);
@@ -108,16 +117,16 @@ public class SpenseSdk {
         });
     }
 
-    public void getPassbookBalance(Context context, APICall.Callback  callback){
+    public void getPassbookBalance(Context context, APICall.Callback callback) {
         APICall.callAPI(context, "GET", PASSBOOK_BALANCE, new JSONObject(), callback);
     }
-    public void getLiveStatus(Context context, APICall.Callback callback){
+
+    public void getLiveStatus(Context context, APICall.Callback callback) {
         APICall.callAPI(context, "GET", LIVE, new JSONObject(), callback);
     }
 
 
-
-    public Fragment getBankingFragment(String slug){
+    public Fragment getBankingFragment(String slug) {
         Bundle bundle = new Bundle();
         bundle.putString(SLUG, slug);
         SpenseWebViewFragment webViewFragment = new SpenseWebViewFragment();
@@ -128,5 +137,22 @@ public class SpenseSdk {
 
     public void checkLogin(Context context, APICall.Callback callback) {
         APICall.callAPI(context, "GET", LOGGED_IN, new JSONObject(), callback);
+    }
+
+    private boolean checkIfActivityOpen(String activityName) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.AppTask> tasks = activityManager.getAppTasks();
+        System.out.println(tasks);
+        for (ActivityManager.AppTask task : tasks) {
+            System.out.println(task);
+            ComponentName componentInfo = task.getTaskInfo().topActivity;
+            if (componentInfo != null) {
+                System.out.println(componentInfo.getClassName());
+                if (componentInfo.getClassName().contains(activityName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

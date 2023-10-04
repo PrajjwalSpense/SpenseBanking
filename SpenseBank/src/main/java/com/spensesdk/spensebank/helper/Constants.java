@@ -2417,5 +2417,6 @@ public interface Constants {
     String CONTEST_DEPOSIT = "contest_deposit";
     String MAX = "max";
     String SLUG = "slug";
+    String NOTIFICATION_REDIRECT = "notification_redirect";
 }
 
