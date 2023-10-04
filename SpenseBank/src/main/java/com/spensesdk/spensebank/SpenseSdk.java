@@ -140,7 +140,7 @@ public class SpenseSdk {
     }
 
     private boolean checkIfActivityOpen(String activityName) {
-        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager activityManager = (ActivityManager) context.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.AppTask> tasks = activityManager.getAppTasks();
         System.out.println(tasks);
         for (ActivityManager.AppTask task : tasks) {
