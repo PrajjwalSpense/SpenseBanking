@@ -120,7 +120,7 @@ public class SpenseSdk {
         });
     }
 
-    public void getPassbookBalance(Context context, APICall.Callback callback){
+    public void getPassbookBalance(Context context, APICall.Callback  callback){
         APICall.callAPI(context, "GET", PASSBOOK_BALANCE, new JSONObject(), callback::onResult);
     }
     public void getLiveStatus(Context context, APICall.Callback callback){

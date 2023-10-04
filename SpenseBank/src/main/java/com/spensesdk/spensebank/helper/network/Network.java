@@ -26,7 +26,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
+import okhttp3.Cookie;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
@@ -43,10 +45,12 @@ public class Network {
     private final OkHttpClient client;
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     PersistentCookieJar cookieJar;
+    private SharedPrefsCookiePersistor sharedPrefsCookiePersistor;
+
     public Network(Context context) {
         this.context = context;
-        cookieJar =
-                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
+        sharedPrefsCookiePersistor = new SharedPrefsCookiePersistor(context);
+        cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
         client = new OkHttpClient.Builder().cookieJar(cookieJar).build();
     }
 
@@ -72,9 +76,7 @@ public class Network {
             requestBuilder.url(httpBuilder.build());
         } else if (method.equals("POST") || method.equals("PUT") || method.equals("PATCH") || method.equals("DELETE") || method.equals("LINK") || method.equals("UNLINK")) {
             RequestBody requestBody = RequestBody.create(String.valueOf(body), JSON);
-            requestBuilder
-                    .url(httpBuilder.build())
-                    .method(method, requestBody);
+            requestBuilder.url(httpBuilder.build()).method(method, requestBody);
         } else {
             return new JSONObject();
         }
@@ -103,7 +105,7 @@ public class Network {
     }
 
     //Requests of content-type:multipart/form-data
-    public JSONObject call(String url, String method, HashMap<String,String> body, HashMap<String, String> headers) {
+    public JSONObject call(String url, String method, HashMap<String, String> body, HashMap<String, String> headers) {
         HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
         okhttp3.Request.Builder requestBuilder = new okhttp3.Request.Builder();
         if (headers != null) {
@@ -113,7 +115,7 @@ public class Network {
         System.out.println(cookieJar.toString());
         if (method.equals("GET")) {
             if (body != null) {
-                for (HashMap.Entry<String,String> entry : body.entrySet()) {
+                for (HashMap.Entry<String, String> entry : body.entrySet()) {
                     String key = entry.getKey();
                     httpBuilder.addQueryParameter(key, body.get(key));
                 }
@@ -121,19 +123,15 @@ public class Network {
             requestBuilder.url(httpBuilder.build());
         } else if (method.equals("POST") || method.equals("PUT") || method.equals("PATCH") || method.equals("DELETE") || method.equals("LINK") || method.equals("UNLINK")) {
             MultipartBody.Builder multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-            if (body!=null) {
-                for (HashMap.Entry<String,String> entry : body.entrySet()) {
+            if (body != null) {
+                for (HashMap.Entry<String, String> entry : body.entrySet()) {
                     String key = entry.getKey();
                     String value = entry.getValue();
                     if (value.startsWith("file:///")) {
                         String tempPath = value.replace("file://", "");
                         File file = new File(tempPath);
-                        Log.e("file", file.exists()+ " - " +file.length());
-                        multipartBuilder.addFormDataPart(key, file.getName(),
-                                RequestBody.create(
-                                        file,
-                                        MediaType.parse("application/octet-stream")
-                                ));
+                        Log.e("file", file.exists() + " - " + file.length());
+                        multipartBuilder.addFormDataPart(key, file.getName(), RequestBody.create(file, MediaType.parse("application/octet-stream")));
                     } else {
                         multipartBuilder.addFormDataPart(key, value);
                     }
@@ -142,9 +140,7 @@ public class Network {
 
             RequestBody requestBody = multipartBuilder.build();
 
-            requestBuilder
-                    .url(httpBuilder.build())
-                    .method(method, requestBody);
+            requestBuilder.url(httpBuilder.build()).method(method, requestBody);
         } else {
             return new JSONObject();
         }
@@ -168,12 +164,12 @@ public class Network {
         return jsonResponse;
     }
 
-    public JSONObject call(String url, String method, HashMap<String,String> body) {
+    public JSONObject call(String url, String method, HashMap<String, String> body) {
         return call(url, method, body, null);
     }
 
     private File createFile(Context context, String path, String fileNameSave) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ContentResolver resolver = context.getContentResolver();
             ContentValues contentValues = new ContentValues();
             contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "pdfNameSave");
@@ -187,7 +183,7 @@ public class Network {
                 InputStream inputStream = new FileInputStream(fileDownload);
                 byte[] buffer = new byte[1024];
                 int len = 0;
-                while ((len = inputStream.read(buffer)) != -1){
+                while ((len = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, len);
                 }
                 outputStream.close();
@@ -198,13 +194,13 @@ public class Network {
                 e.printStackTrace();
             }
 
-        }else{
+        } else {
 
-            File downloadFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +"Spense");
+            File downloadFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "Spense");
             boolean makeDir, createFile;
-            if(!downloadFile.exists()){
+            if (!downloadFile.exists()) {
                 makeDir = downloadFile.mkdir();
-            }else{
+            } else {
                 makeDir = true;
             }
 
@@ -212,12 +208,12 @@ public class Network {
                 File fileDownload = new File(path);
                 File outputFile = new File(downloadFile, fileNameSave);
                 createFile = outputFile.createNewFile();
-                if(makeDir && createFile){
+                if (makeDir && createFile) {
                     FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
                     InputStream inputStream = new FileInputStream(fileDownload);
                     byte[] buffer = new byte[1024];
                     int len = 0;
-                    while ((len = inputStream.read(buffer)) != -1){
+                    while ((len = inputStream.read(buffer)) != -1) {
                         fileOutputStream.write(buffer, 0, len);
                     }
                     fileOutputStream.close();
@@ -256,9 +252,7 @@ public class Network {
             requestBuilder.url(httpBuilder.build());
         } else if (method.equals("POST") || method.equals("PUT") || method.equals("PATCH") || method.equals("DELETE") || method.equals("LINK") || method.equals("UNLINK")) {
             RequestBody requestBody = RequestBody.create(String.valueOf(body), JSON);
-            requestBuilder
-                    .url(httpBuilder.build())
-                    .method(method, requestBody);
+            requestBuilder.url(httpBuilder.build()).method(method, requestBody);
         }
         //Call http requejsonObjectst
         okhttp3.Request request = requestBuilder.build();
@@ -279,7 +273,7 @@ public class Network {
     }
 
     //Requests of content-type:multipart/form-data
-    public void download(String url, String method, HashMap<String,String> body, File file, HashMap<String, String> headers) {
+    public void download(String url, String method, HashMap<String, String> body, File file, HashMap<String, String> headers) {
         HttpUrl.Builder httpBuilder = HttpUrl.parse(url).newBuilder();
         okhttp3.Request.Builder requestBuilder = new okhttp3.Request.Builder();
         if (headers != null) {
@@ -288,7 +282,7 @@ public class Network {
         }
         if (method.equals("GET")) {
             if (body != null) {
-                for (HashMap.Entry<String,String> entry : body.entrySet()) {
+                for (HashMap.Entry<String, String> entry : body.entrySet()) {
                     String key = entry.getKey();
                     httpBuilder.addQueryParameter(key, body.get(key));
                 }
@@ -296,18 +290,14 @@ public class Network {
             requestBuilder.url(httpBuilder.build());
         } else if (method.equals("POST") || method.equals("PUT") || method.equals("PATCH") || method.equals("DELETE") || method.equals("LINK") || method.equals("UNLINK")) {
             MultipartBody.Builder multipartBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-            if (body!=null) {
-                for (HashMap.Entry<String,String> entry : body.entrySet()) {
+            if (body != null) {
+                for (HashMap.Entry<String, String> entry : body.entrySet()) {
                     String key = entry.getKey();
                     String value = entry.getValue();
                     if (value.startsWith("file:///")) {
                         String tempPath = value.replace("file://", "");
                         File fileTemp = new File(tempPath);
-                        multipartBuilder.addFormDataPart(key, fileTemp.getName(),
-                                RequestBody.create(
-                                        fileTemp,
-                                        MediaType.parse("application/octet-stream")
-                                ));
+                        multipartBuilder.addFormDataPart(key, fileTemp.getName(), RequestBody.create(fileTemp, MediaType.parse("application/octet-stream")));
                     } else {
                         multipartBuilder.addFormDataPart(key, value);
                     }
@@ -316,9 +306,7 @@ public class Network {
 
             RequestBody requestBody = multipartBuilder.build();
 
-            requestBuilder
-                    .url(httpBuilder.build())
-                    .method(method, requestBody);
+            requestBuilder.url(httpBuilder.build()).method(method, requestBody);
         }
 
         //Call http requejsonObjectst
@@ -334,7 +322,7 @@ public class Network {
         }
     }
 
-    public void download(String url, String method, HashMap<String,String> body, File file) {
+    public void download(String url, String method, HashMap<String, String> body, File file) {
         download(url, method, body, file, null);
     }
 
@@ -342,5 +330,9 @@ public class Network {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public List<Cookie> getCookies() {
+        return this.sharedPrefsCookiePersistor.loadAll();
     }
 }
