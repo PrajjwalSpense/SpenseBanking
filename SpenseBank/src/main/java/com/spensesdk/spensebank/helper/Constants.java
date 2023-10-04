@@ -2416,5 +2416,6 @@ public interface Constants {
     String CONTEST_REFERRAL = "contest_referral";
     String CONTEST_DEPOSIT = "contest_deposit";
     String MAX = "max";
+    String SLUG = "slug";
 }
 

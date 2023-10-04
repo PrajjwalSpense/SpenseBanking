@@ -2,6 +2,7 @@ package com.spensesdk.spensebank.fragment;
 
 
 import static com.spensesdk.spensebank.helper.Constants.BLANK;
+import static com.spensesdk.spensebank.helper.Constants.SLUG;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -27,6 +28,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
+import android.webkit.CookieManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
@@ -49,14 +51,18 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.spensesdk.spensebank.R;
+import com.spensesdk.spensebank.helper.network.Network;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
+
+import okhttp3.Cookie;
 
 public class SpenseWebViewFragment extends Fragment {
 
@@ -72,7 +78,8 @@ public class SpenseWebViewFragment extends Fragment {
     private ValueCallback<Uri[]> mFilePathCallback;
     public static final int FILE_CHOOSER_RESULT_CODE = 1001;
     String url = "";
-    String token = "";
+    String slug = "";
+    //    String token = "";
     //    LinearLayout loader_layout;
     boolean OPEN_CAMERA = false;
     Uri cameraImageUri;
@@ -86,6 +93,7 @@ public class SpenseWebViewFragment extends Fragment {
     public SpenseWebViewFragment() {
         // Required empty public constructor
     }
+
     public static SpenseWebViewFragment newInstance(String param1, String param2) {
         SpenseWebViewFragment fragment = new SpenseWebViewFragment();
         Bundle args = new Bundle();
@@ -113,17 +121,15 @@ public class SpenseWebViewFragment extends Fragment {
     Timer m_timer;
 
     public boolean onBackPressed(Context context) {
-        System.out.println("onBackPressed : "+webView.getUrl());
-        if(webView.canGoBack()){
-            if(webView.getUrl().equalsIgnoreCase("https://partner.uat.spense.money/banking/spense/saving") ||
-                    webView.getUrl().equalsIgnoreCase("https://partner.uat.spense.money/banking/spense/saving/landing")){
-                System.out.println("going back : "+webView.getUrl());
+        System.out.println("onBackPressed : " + webView.getUrl());
+        if (webView.canGoBack()) {
+            if (webView.getUrl().equalsIgnoreCase("https://partner.uat.spense.money/banking/spense/saving") || webView.getUrl().equalsIgnoreCase("https://partner.uat.spense.money/banking/spense/saving/landing")) {
+                System.out.println("going back : " + webView.getUrl());
                 return true;
             }
             webView.goBack();
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -150,8 +156,6 @@ public class SpenseWebViewFragment extends Fragment {
 //        });
 
 
-
-
 //        if (getIntent().hasExtra("token"))
 //            token = getIntent().getStringExtra("token");
 //        else
@@ -175,6 +179,13 @@ public class SpenseWebViewFragment extends Fragment {
 
         webView = rootView.findViewById(R.id.webView);
 
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+
+        List<Cookie> cookies = new Network(context).getCookies();
+
+        cookieManager.removeAllCookies(null);
+
         m_timer = new Timer();
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setGeolocationEnabled(true);
@@ -192,8 +203,18 @@ public class SpenseWebViewFragment extends Fragment {
         setWebViewChromeClient(webView);
 
 
-        token = getArguments().getString("token",BLANK);
-        url = "https://partner.uat.spense.money/api/user/token/"+token;
+        if (getArguments() != null) {
+            slug = getArguments().getString(SLUG, BLANK);
+        }
+        url = "https://partner.uat.spense.money" + slug;
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookieManager.setCookie(cookie.domain(), cookie.value());
+                System.out.println("CookieUrl" + cookie);
+            }
+
+        }
         webView.loadUrl(url);
 
         return rootView;
@@ -415,10 +436,7 @@ public class SpenseWebViewFragment extends Fragment {
                 }
             } else {
 
-                final String[] ACCEPT_MIME_TYPES = {
-                        "application/pdf",
-                        "image/*"
-                };
+                final String[] ACCEPT_MIME_TYPES = {"application/pdf", "image/*"};
                 Intent takeFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 takeFileIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 takeFileIntent.putExtra(Intent.EXTRA_MIME_TYPES, ACCEPT_MIME_TYPES);
@@ -471,10 +489,8 @@ public class SpenseWebViewFragment extends Fragment {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        return File.createTempFile(
-                imageFileName,  // prefix
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        return File.createTempFile(imageFileName,  // prefix
                 ".jpg",         // suffix
                 storageDir      // directory
         );
@@ -557,8 +573,7 @@ public class SpenseWebViewFragment extends Fragment {
                 }
             }
         } else {
-            if (mFilePathCallback != null)
-                mFilePathCallback.onReceiveValue(null);
+            if (mFilePathCallback != null) mFilePathCallback.onReceiveValue(null);
             mFilePathCallback = null;
             Toast.makeText(context, "Unable to fetch document from device.", Toast.LENGTH_SHORT).show();
         }
@@ -632,8 +647,7 @@ public class SpenseWebViewFragment extends Fragment {
         @Override
         protected void onPostExecute(Bitmap result) {
             if (result == null) {
-                if (mFilePathCallback != null)
-                    mFilePathCallback.onReceiveValue(null);
+                if (mFilePathCallback != null) mFilePathCallback.onReceiveValue(null);
                 mFilePathCallback = null;
                 Toast.makeText(context, "Unable to fetch document from device.", Toast.LENGTH_SHORT).show();
             } else {
@@ -643,8 +657,7 @@ public class SpenseWebViewFragment extends Fragment {
                     mFilePathCallback.onReceiveValue(results);
                     mFilePathCallback = null;
                 } else {
-                    if (mFilePathCallback != null)
-                        mFilePathCallback.onReceiveValue(null);
+                    if (mFilePathCallback != null) mFilePathCallback.onReceiveValue(null);
                     mFilePathCallback = null;
                     Toast.makeText(context, "Unable to fetch document from device.", Toast.LENGTH_SHORT).show();
                 }
