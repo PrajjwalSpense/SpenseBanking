@@ -47,7 +47,7 @@ public class SpenseSdk {
     }
 
 
-    public String createToken(String email_id, String phone, String name, String photo){
+    protected String createToken(String email_id, String phone, String name, String photo){
         Map<String, Object> headers = new HashMap<String, Object>();
         headers.put("kid", api_key);
         headers.put("typ", "JWT");
