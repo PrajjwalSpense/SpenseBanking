@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import com.spensesdk.spensebank.fragment.BankingWebFragment;
 import com.spensesdk.spensebank.helper.APICall;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -23,6 +24,7 @@ public class SpenseSdk {
     private static final String HTTP_URL_FOR_NODEJS_SERVER = "https://partner.uat.spense.money/api/";
     private static final String USER_TOKEN = HTTP_URL_FOR_NODEJS_SERVER + "user/sdk/token";
     private static final String PASSBOOK_BALANCE = HTTP_URL_FOR_NODEJS_SERVER + "banking/spense/saving/balance";
+    private static final String LOGGED_IN = HTTP_URL_FOR_NODEJS_SERVER + "user/logged_in";
     private static final String LIVE = HTTP_URL_FOR_NODEJS_SERVER + "banking/live";
 
     long duration = 3600000L; // 1 hour in milliseconds
@@ -137,5 +139,9 @@ public class SpenseSdk {
         bankingWebFragment.setArguments(bundle);
 
         return bankingWebFragment;
+    }
+
+    public void checkLogin(Context context, APICall.Callback callback) {
+        APICall.callAPI(context, "GET", LOGGED_IN, new JSONObject(), callback);
     }
 }
