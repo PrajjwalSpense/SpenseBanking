@@ -1,5 +1,7 @@
 package com.spensesdk.spensebank;
 
+import static com.spensesdk.spensebank.helper.Constants.SLUG;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -33,11 +35,8 @@ public class SpenseOpenerActivity extends AppCompatActivity {
         fragment_to_show = findViewById(R.id.fragment_to_show);
 
         Bundle bundle = new Bundle();
-        bundle.putString("token", getIntent().getStringExtra("token"));
+        bundle.putString(SLUG, getIntent().getStringExtra(SLUG));
         bundle.putInt("color_code", getIntent().getIntExtra("status_bar_color",  R.color.alpha_card_color));
-
-//        bankingWebFragment = new BankingWebFragment();
-//        bankingWebFragment.setArguments(bundle);
 
         spenseWebViewFragment = new SpenseWebViewFragment();
         spenseWebViewFragment.setArguments(bundle);

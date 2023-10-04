@@ -16,7 +16,7 @@ import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
-    String token;
+//    String token;
     String name, email, phone;
     ActivityMainBinding binding;
     boolean isSessionCreated = false, isLive = false;
@@ -36,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
         binding.heading.setText("Hi "+name+",");
 
         SpenseSdk sdkBankInitiailizer = new SpenseSdk(this,"Demo",getString(R.string.api_key),getString(R.string.secret_key));
-        token = sdkBankInitiailizer.createToken("/banking/spense",email,"+91"+phone,name,"");
-        sdkBankInitiailizer.getSession(token, response -> {
+//        token = sdkBankInitiailizer.createToken(email,"+91"+phone,name,"");
+
+        sdkBankInitiailizer.login(email,"+91"+phone,name,"", response -> {
             Toast.makeText(this, "Session Created", Toast.LENGTH_SHORT).show();
             isSessionCreated = true;
         });
@@ -80,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.image.setOnClickListener(view -> {
-            if(isLive)
-                sdkBankInitiailizer.open("/banking/spense",email,"+91"+phone,name,"",R.color.dashboard_live_main);
+            if(isLive && isSessionCreated)
+                sdkBankInitiailizer.open("/banking/spense");
             else
                 Toast.makeText(MainActivity.this, "Banking coming soon.", Toast.LENGTH_SHORT);
 

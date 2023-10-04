@@ -1,5 +1,7 @@
 package com.spensesdk.spensebank;
 
+import static com.spensesdk.spensebank.helper.Constants.SLUG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import com.spensesdk.spensebank.fragment.BankingWebFragment;
+import com.spensesdk.spensebank.fragment.SpenseWebViewFragment;
 import com.spensesdk.spensebank.helper.APICall;
 
 import org.json.JSONException;
@@ -44,7 +47,7 @@ public class SpenseSdk {
     }
 
 
-    public String createToken(String module,String email_id, String phone, String name, String photo){
+    public String createToken(String email_id, String phone, String name, String photo){
         Map<String, Object> headers = new HashMap<String, Object>();
         headers.put("kid", api_key);
         headers.put("typ", "JWT");
@@ -59,7 +62,6 @@ public class SpenseSdk {
                 .claim("phone", phone)
                 .claim("name", name)
                 .claim("photo", photo)
-                .claim("module", module)//"/banking/spense")
                 .signWith(
                         SignatureAlgorithm.HS256,
                         secret_key.getBytes()
@@ -68,25 +70,21 @@ public class SpenseSdk {
         return jwt;
     }
 
-    public void open(String module, String email_id, String phone, String name, String photo, int statuBarColor){
+    public void open(String slug, int statusBarColor){
         try {
-            String token = createToken(module, email_id, phone, name, photo);
-            System.out.println("openActivity token : "+ token);
             Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
-            myIntent.putExtra("token", token);
-            myIntent.putExtra("status_bar_color", statuBarColor);
+            myIntent.putExtra(SLUG, slug);
+            myIntent.putExtra("status_bar_color", statusBarColor);
             context.startActivity(myIntent);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public void open(String module, String email_id, String phone, String name, String photo){
+    public void open(String slug){
         try {
-            String token = createToken(module, email_id, phone, name, photo);
-            System.out.println("openActivity token : "+ token);
             Intent myIntent = new Intent(context,Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
-            myIntent.putExtra("token", token);
+            myIntent.putExtra(SLUG, slug);
             myIntent.putExtra("status_bar_color", R.color.alpha_card_color);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(myIntent);
@@ -96,20 +94,8 @@ public class SpenseSdk {
     }
 
 
-    public void getSession(String email_id, String phone, String name, String photo, APICall.Callback callback) {
-        String token = createToken("/banking/spense",email_id,phone,name,photo);
-        APICall.callAPI(context, "GET", USER_TOKEN + "/" + token, new JSONObject(), response -> {
-            System.out.println(USER_TOKEN + " - - - - - "+response);
-            if (response != null) {
-                try {
-                    callback.onResult(response);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-    public void getSession(String token, APICall.Callback callback) {
+    public void login(String email_id, String phone, String name, String photo, APICall.Callback callback) {
+        String token = createToken(email_id,phone,name,photo);
         APICall.callAPI(context, "GET", USER_TOKEN + "/" + token, new JSONObject(), response -> {
             System.out.println(USER_TOKEN + " - - - - - "+response);
             if (response != null) {
@@ -123,22 +109,21 @@ public class SpenseSdk {
     }
 
     public void getPassbookBalance(Context context, APICall.Callback  callback){
-        APICall.callAPI(context, "GET", PASSBOOK_BALANCE, new JSONObject(), callback::onResult);
+        APICall.callAPI(context, "GET", PASSBOOK_BALANCE, new JSONObject(), callback);
     }
     public void getLiveStatus(Context context, APICall.Callback callback){
-        APICall.callAPI(context, "GET", LIVE, new JSONObject(), callback::onResult);
+        APICall.callAPI(context, "GET", LIVE, new JSONObject(), callback);
     }
 
 
 
-    public Fragment getBankingFragment(String module, String email_id, String phone, String name, String photo){
+    public Fragment getBankingFragment(String slug){
         Bundle bundle = new Bundle();
-        bundle.putString("token", createToken(module, email_id, phone, name, photo));
+        bundle.putString(SLUG, slug);
+        SpenseWebViewFragment webViewFragment = new SpenseWebViewFragment();
+        webViewFragment.setArguments(bundle);
 
-        BankingWebFragment bankingWebFragment = new BankingWebFragment();
-        bankingWebFragment.setArguments(bundle);
-
-        return bankingWebFragment;
+        return webViewFragment;
     }
 
     public void checkLogin(Context context, APICall.Callback callback) {
