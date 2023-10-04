@@ -210,11 +210,10 @@ public class SpenseWebViewFragment extends Fragment {
 
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                cookieManager.setCookie(cookie.domain(), cookie.value());
-                System.out.println("CookieUrl" + cookie);
+                cookieManager.setCookie(cookie.domain(), cookie.toString());
             }
-
         }
+
         webView.loadUrl(url);
 
         return rootView;
