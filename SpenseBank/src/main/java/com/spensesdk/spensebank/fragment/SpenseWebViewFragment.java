@@ -81,7 +81,7 @@ public class SpenseWebViewFragment extends Fragment {
     private static final int REQUEST_CAMERA_PERMISSION_FROM_FILE_CHOOSER = 1003;
     private ValueCallback<Uri[]> mFilePathCallback;
     public static final int FILE_CHOOSER_RESULT_CODE = 1001;
-    String url = "";
+    String url = "https://partner.uat.spense.money";
     String slug = "";
     //    String token = "";
     //    LinearLayout loader_layout;
@@ -96,6 +96,8 @@ public class SpenseWebViewFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             slug = intent.getStringExtra(SLUG);
+            System.out.println("URL onReceive: " + url + slug);
+            webView.loadUrl(url+slug);
         }
     };
 
@@ -217,7 +219,6 @@ public class SpenseWebViewFragment extends Fragment {
         if (getArguments() != null) {
             slug = getArguments().getString(SLUG, BLANK);
         }
-        url = "https://partner.uat.spense.money" + slug;
 
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -225,7 +226,7 @@ public class SpenseWebViewFragment extends Fragment {
             }
         }
 
-        webView.loadUrl(url);
+        webView.loadUrl(url+slug);
 
         return rootView;
     }
