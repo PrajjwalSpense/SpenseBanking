@@ -106,6 +106,11 @@ public class SpenseWebViewFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public void reload(String slug) {
+        this.slug = slug;
+        webView.loadUrl(url+slug);
+    }
+
     public static SpenseWebViewFragment newInstance(String param1, String param2) {
         SpenseWebViewFragment fragment = new SpenseWebViewFragment();
         Bundle args = new Bundle();
@@ -118,8 +123,6 @@ public class SpenseWebViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        getWindow().getDecorView().setSystemUiVisibility(View.VISIBLE);
-//        getWindow().setStatusBarColor(ContextCompat.getColor(context, R.color.alpha_card_color));
         LocalBroadcastManager.getInstance(context).registerReceiver(messageReceiver, new IntentFilter(NOTIFICATION_REDIRECT));
     }
 

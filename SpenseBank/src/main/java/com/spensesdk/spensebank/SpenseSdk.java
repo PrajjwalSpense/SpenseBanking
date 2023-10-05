@@ -1,6 +1,5 @@
 package com.spensesdk.spensebank;
 
-import static com.spensesdk.spensebank.helper.Constants.NOTIFICATION_REDIRECT;
 import static com.spensesdk.spensebank.helper.Constants.SLUG;
 
 import android.app.ActivityManager;
@@ -10,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.spensesdk.spensebank.fragment.SpenseWebViewFragment;
 import com.spensesdk.spensebank.helper.APICall;
@@ -86,21 +84,21 @@ public class SpenseSdk {
 
     public void openFromNotification(String slug) {
         Intent intent;
-        if (checkIfActivityOpen("SpenseOpenerActivity")) {
-            intent = new Intent(NOTIFICATION_REDIRECT);
+//        if (checkIfActivityOpen("SpenseOpenerActivity")) {
+//            intent = new Intent(NOTIFICATION_REDIRECT);
+//            intent.putExtra(SLUG, slug);
+//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+//        } else {
+        try {
+            intent = new Intent(context, Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
             intent.putExtra(SLUG, slug);
-            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-        } else {
-            try {
-                intent = new Intent(context, Class.forName("com.spensesdk.spensebank.SpenseOpenerActivity"));
-                intent.putExtra(SLUG, slug);
-                intent.putExtra("status_bar_color", R.color.alpha_card_color);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            intent.putExtra("status_bar_color", R.color.alpha_card_color);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+
     }
 
     public void login(String email_id, String phone, String name, String photo, APICall.Callback callback) {

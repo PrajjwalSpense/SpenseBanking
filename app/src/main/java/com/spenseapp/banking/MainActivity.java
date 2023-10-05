@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.image.setOnClickListener(view -> {
             if(isLive && isSessionCreated)
-                sdkBankInitiailizer.openFromNotification("/banking/spense");
+                sdkBankInitiailizer.open("/banking/spense");
             else
                 Toast.makeText(MainActivity.this, "Banking coming soon.", Toast.LENGTH_SHORT);
 
